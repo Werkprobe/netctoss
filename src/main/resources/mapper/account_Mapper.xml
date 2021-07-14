@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ <mapper namespace="com.netnoss.www.dao.AccountDao">
+ 	<select id="findAllAccount" parameterType="com.netnoss.www.entity.AccountCondition" resultType="com.netnoss.www.entity.Account">
+ 		SELECT id,idcard_no,real_name,login_name,status,create_date, last_login_time
+ 		FROM account
+ 		WHERE 1=1 
+ 		<if test="idCart!=null and idCart!=''">
+ 		AND	idcard_no=#{idCart}
+ 		</if>
+ 		<if test="realName!=null and realName!=''">
+ 		AND real_name=#{realName}
+ 		</if>
+ 		<if test="loginName!=null and loginName!=''">
+ 		AND	 login_name=#{loginName}
+ 		</if>
+ 		<if test="status!=null and status!=0">
+ 		AND status=#{status}
+ 		</if>
+		 ORDER BY id ASC
+		 LIMIT #{pageNum},#{pageSize}
+	</select>
+	<select id="findAccountpageCount" parameterType="com.netnoss.www.entity.AccountCondition" resultType="int">
+		SELECT COUNT(id) AS page_count
+ 		FROM account
+ 		WHERE 1=1 
+ 		<if test="idCart!=null and idCart!=''">
+ 		AND	idcard_no=#{idCart}
+ 		</if>
+ 		<if test="realName!=null and realName!=''">
+ 		AND real_name=#{realName}
+ 		</if>
+ 		<if test="loginName!=null and loginName!=''">
+ 		AND	 login_name=#{loginName}
+ 		</if>
+ 		<if test="status!=null and status!=''">
+ 		AND status=#{status}
+ 		</if>
+	</select>
+	<insert id="addNewAccount" parameterType="com.netnoss.www.entity.Account">
+		INSERT INTO account(real_name,idcard_no,login_name,login_passwd,gender,create_date,telephone,mailaddress,zipcode,status)
+		VALUES(#{real_name},#{idcard_no},#{login_name},#{login_passwd},#{gender},#{create_date},#{telephone},#{mailaddress},#{zipcode},#{status})
+	</insert>
+	<select id="isExistloginName" resultType="int" parameterType="string">
+		SELECT COUNT(id) AS count
+		FROM account
+		WHERE login_name=#{0}
+	</select>
+	<select id="isExistIdCardNo" resultType="int" parameterType="string">
+		SELECT COUNT(id) AS count
+		FROM account
+		WHERE idcard_no=#{condition}
+	</select>
+	<update id="updateAccountStatus">
+		UPDATE account
+		SET status=#{0}, process_date=#{1}
+		WHERE id=#{2}
+	</update>
+	<update id="updateAccountInfo" parameterType="com.netnoss.www.entity.Account">
+		UPDATE account 
+		SET real_name=#{real_name},login_passwd=#{login_passwd},gender=#{gender},telephone=#{telephone},mailaddress=#{mailaddress},zipcode=#{zipcode}
+		WHERE id=#{id}
+	</update>
+	<select id="findAccountById" parameterType="int" resultType="com.netnoss.www.entity.Account">
+		SELECT id, real_name,idcard_no,login_name,login_passwd,gender,birthdate,create_date,pause_date,close_date,telephone,mailaddress,zipcode,last_login_time,last_login_ip
+		FROM account
+		WHERE id=#{id}
+	</select>
+	<select id="findAccountByidCard" parameterType="string" resultType="com.netnoss.www.entity.Account">
+		SELECT id, real_name,idcard_no,login_name,login_passwd,gender,birthdate,create_date,pause_date,close_date,telephone,mailaddress,zipcode,last_login_time,last_login_ip
+		FROM account
+		WHERE idcard_no=#{idcard_no}
+	</select>
+ </mapper>

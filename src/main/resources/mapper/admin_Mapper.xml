@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.netnoss.www.dao.AdminDao">
+	<select id="findAdminRoleListInfo" parameterType="com.netnoss.www.entity.AdminRoleCondition" resultType="com.netnoss.www.entity.AdminRoleDetailInfo">
+		 SELECT admin_info.id,admin_info.name,admin_code,telephone,email,enrolldate,GROUP_CONCAT(role.name) AS role_name
+		 FROM admin_info,role,admin_role
+		 WHERE admin_info.id=admin_role.admin_id 
+		 AND role.id=admin_role.role_id
+		 <if test="(roleName!=null and roleName!='') or (privilegeId!=null and privilegeId!='')">
+		 	  AND admin_info.id 
+		 	  IN (SELECT DISTINCT admin_id 
+		 	  	  FROM role,admin_role
+		 	  	  WHERE role.id=admin_role.role_id
+		 	  	  	    AND role.id 
+		 	  	  	    IN (SELECT role.id
+		 	  	  	    FROM role 
+		 	  	  	    JOIN role_privilege 
+		 	  	  	    ON role.id=role_privilege.role_id 
+		 	  	  	    WHERE
+		 	  	 <if test="roleName!=null and roleName!=''">
+		 	  	 		role.name=#{roleName} 
+		 	  	 </if>
+		 	  	 <if test="(roleName!=null and roleName!='') and (privilegeId!=null and privilegeId!='')">
+		 	  	 		AND 
+		 	  	 </if>
+		 	  	 <if test="privilegeId!=null and privilegeId!=''">
+		 				privilege_id=#{privilegeId}
+				 </if>
+				 ))  	    
+		 </if>
+		 GROUP BY admin_info.id
+		 ORDER BY admin_info.id DESC
+		 LIMIT #{pageNum},#{pageSize}
+	</select>
+	<select id="findAdminCountPage" parameterType="com.netnoss.www.entity.AdminRoleCondition" resultType="int">
+		 SELECT COUNT(id) AS page_count 
+		 FROM (SELECT admin_info.id,admin_info.name,admin_code,telephone,email,enrolldate,GROUP_CONCAT(role.name) AS role_name
+			   FROM admin_info, role,admin_role
+		       WHERE admin_info.id=admin_role.admin_id 
+		       AND role.id=admin_role.role_id
+		       <if test="(roleName!=null and roleName!='') or (privilegeId!=null and privilegeId!='')">
+		 	 		 AND admin_info.id 
+		 	  		 IN (SELECT DISTINCT admin_id 
+		 	  	     FROM role,admin_role
+		 	  	     WHERE role.id=admin_role.role_id
+		 	  	  	    AND role.id 
+		 	  	  	    IN (SELECT role.id
+		 	  	  	    FROM role 
+		 	  	  	    JOIN role_privilege 
+		 	  	  	    ON role.id=role_privilege.role_id 
+		 	  	  	    WHERE
+		 	     <if test="roleName!=null and roleName!=''">
+		 	  	      role.name=#{roleName} 
+		 	     </if>
+		 	     <if test="(roleName!=null and roleName!='') and (privilegeId!=null and privilegeId!='')">
+		 	  	 	  AND 
+		 	     </if>
+		 	     <if test="privilegeId!=null and privilegeId!=''">
+		 				privilege_id=#{privilegeId}
+			     </if>
+			     ))  	    
+		     </if>
+		     GROUP BY admin_info.id
+		 ) AS role_count
+	</select>
+	<select id="findAdminRoleInfoById" parameterType="int" resultType="com.netnoss.www.entity.AdminRoleDetailInfo">
+		SELECT admin_info.id,admin_info.name,admin_code,telephone,email,enrolldate,GROUP_CONCAT(role.name) AS role_name,GROUP_CONCAT(role.id) AS role_id
+		FROM admin_info,role,admin_role 
+		WHERE admin_info.id=admin_role.admin_id 
+		AND role.id=admin_role.role_id 
+		AND admin_info.id=#{adminId} 
+		GROUP BY admin_info.id
+	</select>
+	<select id="findRoleListInfo" resultType="com.netnoss.www.entity.Role">
+		SELECT id,name 
+		FROM role
+	</select>
+	<update id="updateAdminInfoById" parameterType="com.netnoss.www.entity.AdminInfo">
+		UPDATE admin_info 
+		SET name=#{name},telephone=#{telephone},email=#{email}
+		WHERE id=#{id}
+	</update>
+	<delete id="delRoleById" parameterType="int">
+		DELETE FROM admin_role
+		WHERE admin_id=#{id}
+	</delete>
+	<insert id="insertRoleAdmin" parameterType="list">
+		INSERT INTO admin_role(admin_id,role_id)
+		VALUES
+		<foreach collection="list" item="adminRole" index="index" separator=",">
+			 (
+			 	#{adminRole.adminId},
+			 	#{adminRole.roleId}
+			 )
+		</foreach> 
+	</insert>
+	<update id="modifyPassword" parameterType="com.netnoss.www.entity.AdminInfo">
+		UPDATE admin_info 
+		SET password=#{password}
+		WHERE id=#{id}
+	</update>
+	<insert id="addAdminInfo" useGeneratedKeys="true" keyProperty="id" parameterType="com.netnoss.www.entity.AdminInfo" >
+		INSERT INTO admin_info(admin_code,password,name,telephone,email,enrolldate)
+		VALUES(#{admin_code},#{password},#{name},#{telephone},#{email},#{enrolldate})
+	</insert>
+	<delete id="delAdminInfo" parameterType="int">
+		DELETE FROM admin_info
+		WHERE id=#{id}
+	</delete>
+	<select id="findRoleList" resultType="com.netnoss.www.entity.Role">
+		SELECT id,name 
+		FROM role
+	</select>
+</mapper>
+
+
+
+
+
+
+

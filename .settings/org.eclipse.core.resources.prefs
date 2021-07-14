@@ -1,0 +1,12 @@
+eclipse.preferences.version=1
+encoding//src/main/java/com/netnoss/www/dao/CostDao.java=UTF-8
+encoding//src/main/java/com/netnoss/www/service/CostService.java=UTF-8
+encoding//src/main/java/com/netnoss/www/service/impl/AccountServiceImpl.java=UTF-8
+encoding//src/main/java/com/netnoss/www/service/impl/AdminServiceImpl.java=UTF-8
+encoding//src/main/java/com/netnoss/www/service/impl/CostServiceImpl.java=UTF-8
+encoding//src/main/java/com/netnoss/www/service/impl/NetCServiceImpl.java=UTF-8
+encoding//src/main/java/com/netnoss/www/service/impl/RoleServiceImpl.java=UTF-8
+encoding//src/main/java/com/netnoss/www/service/impl/UserServiceImpl.java=UTF-8
+encoding//src/main/webapp/styles=UTF-8
+encoding//src/main/webapp/styles/global.css=UTF-8
+encoding//src/main/webapp/styles/global_color.css=UTF-8

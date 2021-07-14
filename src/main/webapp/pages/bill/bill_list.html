@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>NetCTOSS</title>
+        <link type="text/css" rel="stylesheet" media="all" href="../../styles/global.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="../../styles/global_color.css" />    	
+       	<script type="text/javascript" src="../../js/jquery-1.4.3.js"></script>
+   		<script type="text/javascript" src="../../js/gl.js"></script>
+   		<script type="text/javascript" src="bill_list.js"></script>
+    </head>
+    <body>
+        <!--Logo-->
+        <div id="header">
+            <img src="../../images/logo.png" alt="logo" class="left"/>
+            <a href="javascript:;">[Exit]</a>            
+        </div>
+        <!--Logo end-->
+        <!--navigate-->
+        <div id="navi">                        
+            <ul id="menu">
+                <li><a href="../index.html" class="index_off"></a></li>
+                <li><a href="../role/role_list.html" class="role_off"></a></li>
+                <li><a href="../admin/admin_list.html" class="admin_off"></a></li>
+                <li><a href="../fee/fee_list.html" class="fee_off"></a></li>
+                <li><a href="../account/account_list.html" class="account_off"></a></li>
+                <li><a href="../service/service_list.html" class="service_off"></a></li>
+                <li><a href="../bill/bill_list.html" class="bill_on"></a></li>
+                <li><a href="../report/report_list.html" class="report_off"></a></li>
+                <li><a href="../user/user_info.html" class="information_off"></a></li>
+                <li><a href="../user/user_modi_pwd.html" class="password_off"></a></li>
+            </ul>            
+        </div>
+        <!--navigate end-->
+        <!--main-->
+        <div id="main">
+            <form action="" method="">
+                <!-suchen-->
+                <div class="search_add">                        
+                    <div>Ausweis：<input type="text" id="idcard_no" value="" class="text_search" /></div>
+                    <div>Konto：<input type="text" id="login_name" value="" class="width100 text_search" /></div>                            
+                    <div>name：<input type="text" id="real_name" value="" class="width70 text_search" /></div>
+                    <div>
+                        <select class="select_search" id="selYears">
+                        </select>
+                        Jahr
+                        <select class="select_search" id="selMonths">
+                        </select>
+                        Monat
+                    </div>
+          
+                    <div><input type="button" value="Suchen"  id="search" style="width: 80px;"   class="btn_search_large" /></div>
+                </div>  
+             <!--daten-->     
+                <div id="data">            
+                    <table id="datalist">
+                    <thead>
+                    <tr>
+                        <th class="width50">ID</th>
+                        <th class="width100">Name</th>
+                        <th class="width150">Ausweis</th>
+                        <th class="width150">Konto</th>
+                        <th class="width70">Gebühr</th>
+                        <th class="width100">Monat</th>
+                        <th class="width100">Zahlungsart</th>
+                        <th class="width100">Zustand</th>                                                        
+                        <th class="width50"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <br />
+                <p>Beschreibung der Tätigkeit：<br />
+                1、Sie Könnten nur die Rechnung der letztens 3 Jahre heraussuchen，Z.B：2020/2019/2018；<br />
+                2、die Daten des Jahrs und Monats wird vom Program automatisch erstellen；<br />
+                3、Am Ende pro Monat rechnt dieses Programm automatisch die Rechnungen und die Daten der Rechnungen wird automatisch in Database.</p>
+                </div>                    
+                 <!--pages-->
+                <div id="pages">
+        	       <a href="#"><</a>
+                    <a href="#" class="current_page">1</a>
+                    <a href="#">></a>
+                </div>              
+            </form>
+        </div>
+       <!--main zum ende-->
+        <div id="footer">
+            <p>[Das Projekt werde nur als übung für Java dienen.]</p>
+			<p>Copyright(C):Autor:Likun Ren</p>
+        </div>
+    </body>
+</html>

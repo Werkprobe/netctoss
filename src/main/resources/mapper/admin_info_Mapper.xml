@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.netnoss.www.dao.UserDao">
+	<select id="findByName" parameterType="string" resultType="com.netnoss.www.entity.AdminInfo">
+		SELECT id,admin_code,password,name,telephone,email,enrolldate
+		FROM admin_info 
+		WHERE admin_code=#{adminCode}
+	</select>
+	<update id="modifyUserPwd" parameterType="com.netnoss.www.entity.AdminInfo" >
+		UPDATE admin_info 
+		SET password=#{password}
+		WHERE admin_code=#{admin_code}
+	</update>
+	<update id="modifyUserInfo" parameterType="com.netnoss.www.entity.AdminInfo">
+		UPDATE admin_info
+		SET name=#{name},telephone=#{telephone},email=#{email}
+		WHERE admin_code=#{admin_code}
+	</update>
+	<select id="findAdminDetailInfo" parameterType="string" resultType="com.netnoss.www.entity.AdminDetailInfo" >
+		SELECT id,admin_code,password,name,telephone,email,enrolldate,role_name
+		FROM admin_info JOIN 
+		     (SELECT admin_id,GROUP_CONCAT(name) As role_name FROM role
+		      JOIN admin_role
+		      ON id=role_id
+		      GROUP BY admin_id) AS role_temp 
+		ON admin_info.id=role_temp.admin_id
+		WHERE admin_code=#{adminCode}
+	</select>
+	<select id="findRolesByUser" resultType="String" parameterType="int">
+		SELECT GROUP_CONCAT(DISTINCT(role_privilege.privilege_id)) privilege
+		FROM role_privilege JOIN admin_role ON admin_role.role_id=role_privilege.role_id
+		WHERE admin_id=#{admin_id}
+		GROUP BY admin_id		
+	</select>
+</mapper>
+
+
+
+
+
+
+

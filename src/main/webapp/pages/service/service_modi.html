@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>NetCTOSS</title>
+        <link type="text/css" rel="stylesheet" media="all" href="../../styles/global.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="../../styles/global_color.css" />
+        <script type="text/javascript" src="../../js/jquery-1.4.3.js"></script>
+   		<script type="text/javascript" src="../../js/gl.js"></script>
+   		<script type="text/javascript" src="service_modi.js"></script>
+       
+    </head>
+    <body>
+       <!--Logo Start-->
+        <div id="header">
+            <img src="../../images/logo.png" alt="logo" class="left"/>
+            <a href="javascript:;">[Exit]</a>            
+        </div>
+        <!--Logo Ende-->
+		<!--Navigetion grenz-->
+        <div id="navi">
+            <ul id="menu">
+                <li><a href="../index.html" class="index_off"></a></li>
+                <li><a href="../role/role_list.html" class="role_off"></a></li>
+                <li><a href="../admin/admin_list.html" class="admin_off"></a></li>
+                <li><a href="../fee/fee_list.html" class="fee_off"></a></li>
+                <li><a href="../account/account_list.html" class="account_off"></a></li>
+                <li><a href="../service/service_list.html" class="service_on"></a></li>
+                <li><a href="../bill/bill_list.html" class="bill_off"></a></li>
+                <li><a href="../report/report_list.html" class="report_off"></a></li>
+                <li><a href="../user/user_info.html" class="information_off"></a></li>
+                <li><a href="../user/user_modi_pwd.html" class="password_off"></a></li>
+            </ul>
+        </div>
+       <!--Navigetion Ende-->
+		<!--main-->
+        <div id="main">
+            <!--save prompt-->
+            <div id="save_result_info" class="save_fail">资费修改失败！数据并发错误。</div>
+            <form  class="main_form">
+                <div class="text_info clearfix"><span>Dienst ID：</span></div>
+                <div class="input_info">
+                    <input type="text" id="account_id" value="1" readonly class="readonly" />
+                </div>
+                <div class="text_info clearfix"><span>OS Username：</span></div>
+                <div class="input_info">
+                    <input type="text" id="login_name" value="openlab1" readonly class="readonly" />
+                </div>
+                <div class="text_info clearfix"><span>Server IP：</span></div>
+                <div class="input_info">
+                    <input type="text" id="unix_host" value="192.168.0.23" readonly class="readonly" />
+                </div>
+                <div class="text_info clearfix"><span>Tarifart：</span></div>
+                <div id="cost_typ" class="input_info">
+                    <select class="width150" >
+                    </select>
+                    <div class="validate_msg_long">Bitte ändern Sie die Tarifart oder brechen Sie die Änderung ab。</div>                      
+                </div>
+                	<!--prompt-->
+				<div id="operate_result_info" class="operate_success" style="width: 450px;">
+				<img src="../../images/close.png"
+					onclick="this.parentNode.style.display='none';" />
+				<span></span>
+				</div>
+                <!--operation Btn-->
+                <div class="button_info clearfix">
+                    <input type="button" value="Fertig" id="btn_save" class="btn_save" />
+                    <input type="button" id="btn_abrechen" value="Abbrechen" class="btn_save" />
+                </div>
+                 <p>Beschreibung der Tätigkeit：<br />
+                	1.Klicken Sie nach dem Ändern des Tarifs auf Speichern, ohne die Daten in der Database zu ändern;<br />
+                	2、die Daten werden an die Nachrichtenwarteschlange gesendet；<br />
+                	3、zu Ende jedes Monats werde das Programm automatisch geschafft;</p>
+                
+            </form>  
+        </div>
+         <!--zum Ende-->
+        <div id="footer">
+          <p>[Das Projekt werde nur als übung für Java dienen.]</p>
+		  <p>Copyright(C):Autor:Likun Ren</p>
+        </div>
+    </body>
+</html>

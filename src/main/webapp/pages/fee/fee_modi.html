@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>NetCTOSS</title>
+        <link type="text/css" rel="stylesheet" media="all" href="../../styles/global.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="../../styles/global_color.css" />
+        <script type="text/javascript" src="../../js/jquery-1.4.3.js"></script>
+   		<script type="text/javascript" src="../../js/gl.js"></script>
+   		<script type="text/javascript" src="fee_modi.js"></script>    
+    </head>
+    <body>
+        <!--Logo Start-->
+        <div id="header">
+            <img src="../../images/logo.png" alt="logo" class="left"/>
+            <a href="javascript:;">[Exit]</a>            
+        </div>
+        <!--Logo Ende-->
+        <!--Navigetion grenz-->
+        <div id="navi">
+            <ul id="menu">
+                <li><a href="../index.html" class="index_off"></a></li>
+                <li><a href="../role/role_list.html" class="role_off"></a></li>
+                <li><a href="../admin/admin_list.html" class="admin_off"></a></li>
+                <li><a href="../fee/fee_list.html" class="fee_on"></a></li>
+                <li><a href="../account/account_list.html" class="account_off"></a></li>
+                <li><a href="../service/service_list.html" class="service_off"></a></li>
+                <li><a href="../bill/bill_list.html" class="bill_off"></a></li>
+                <li><a href="../report/report_list.html" class="report_off"></a></li>
+                <li><a href="../user/user_info.html" class="information_off"></a></li>
+                <li><a href="../user/user_modi_pwd.html" class="password_off"></a></li>
+            </ul>
+        </div>
+        <!--Navigetion Ende-->
+        <!--main-->
+        <div id="main">  
+        	<div id="operate_result_info" class="operate_success">
+                    <img src="../../images/close.png" onclick="this.parentNode.style.display='none';" />
+                    <span>Erfolgreich gelöscht！</span>
+            </div>          
+            <form action="" method="" class="main_form">
+                <div class="text_info clearfix"><span>ID：</span></div>
+                <div class="input_info"><input type="text" id="costId" class="readonly" readonly="readonly"  /></div>
+                <div class="text_info clearfix"><span>Tarifname：</span></div>
+                <div class="input_info">
+                    <input type="text" id="tarif_Name" class="width300" value=""/>
+                    <span class="required">*</span>
+                    <div class="validate_msg_short tarif_name">Maximal:20 Schriftzeichen</div>
+                </div>
+                <div class="text_info clearfix"><span>Tarifsorten：</span></div>
+                <div class="input_info fee_type">
+                    <input type="radio" name="radFeeType" id="monthly" value="1" />
+                    <label for="monthly">Monatlich</label>
+                    <input type="radio" name="radFeeType" value="2" checked="checked" id="package" />
+                    <label for="package">Tagesmenü</label>
+                    <input type="radio" name="radFeeType"  value="3" id="timeBased" />
+                    <label for="timeBased">Zeitlich</label>
+                </div>
+                <div class="text_info clearfix"><span>Basiszeit：</span></div>
+                <div class="input_info">
+                    <input type="text" id="basiszeit" value="" class="width100" />
+                    <span class="info">Stunde</span>
+                    <span class="required">*</span>
+                    <div class="validate_msg_long valid_zeit">Zwischen 1 und 600 Zahl</div>
+                </div>
+                <div class="text_info clearfix"><span>Basiszinssatz：</span></div>
+                <div class="input_info">
+                    <input type="text" id="basiszins_satz" value="" class="width100" />
+                    <span class="info">Euro</span>
+                    <span class="required">*</span>
+                    <div class="validate_msg_long valid_basesatz">Zwischen 0 und 99999.99 Zahl</div>
+                </div>
+                <div class="text_info clearfix"><span>Stundensatz：</span></div>
+                <div class="input_info">
+                    <input type="text" id="stunden_satz" value="" class="width100" />
+                    <span class="info">Euro/S</span>
+                    <span class="required">*</span>
+                    <div class="validate_msg_long valid_studentsatz">Zwischen 0 und 99999.99 Zahl</div>
+                </div>   
+                <div class="text_info clearfix"><span>Beschreibung der TarifPaket：</span></div>
+                <div class="input_info_high">
+                    <textarea class="width300 height70" id="area_tarif_desc">
+                    </textarea>
+                    <div class="validate_msg_short valid_desc">Maximal:100 Schriftzeichen</div>
+                </div>                    
+                <div class="button_info clearfix">
+                    <input type="button" value="Fertig" id="btn_modify" class="btn_save"/>
+                    <input type="button" value="Abbrechen" id="btn_cancel" class="btn_save" />
+                </div>
+            </form>
+        </div>
+        <!--main Ende-->
+        <div id="footer">
+            <p>[Das Projekt werde nur als übung für Java dienen.]</p>
+            <p>Copyright(C):Autor:Likun Ren </p>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>NetCTOSS</title>
+        <link type="text/css" rel="stylesheet" media="all" href="../../styles/global.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="../../styles/global_color.css" />
+        <script type="text/javascript" src="../../js/jquery-1.4.3.js"></script>
+   		<script type="text/javascript" src="../../js/gl.js"></script>
+   		<script type="text/javascript" src="fee_list.js"></script>     
+    </head>
+    <body>
+        <!--Logo gebiet start-->
+        <div id="header">
+            <img src="../../images/logo.png" alt="logo" class="left"/>
+            <a href="javascript:;">[Exit]</a>            
+        </div>
+        <!--Logo zu Ende-->
+        <!--navigate start-->
+        <div id="navi">                        
+            <ul id="menu">
+                <li><a href="../index.html" class="index_off"></a></li>
+                <li><a href="../role/role_list.html" class="role_off"></a></li>
+                <li><a href="../admin/admin_list.html" class="admin_off"></a></li>
+                <li><a href="../fee/fee_list.html" class="fee_on"></a></li>
+                <li><a href="../account/account_list.html" class="account_off"></a></li>
+                <li><a href="../service/service_list.html" class="service_off"></a></li>
+                <li><a href="../bill/bill_list.html" class="bill_off"></a></li>
+                <li><a href="../report/report_list.html" class="report_off"></a></li>
+                <li><a href="../user/user_info.html" class="information_off"></a></li>
+                <li><a href="../user/user_modi_pwd.html" class="password_off"></a></li>
+            </ul>            
+        </div>
+        <!--navigate zum Ende-->
+        <!--main-->
+        <div id="main">
+            <form>
+            	<input type="hidden" id="sortField" value="id"/>
+				<input type="hidden" id="sortType" value="DESC"/>
+                <!--sort-->
+                <div class="search_add">
+                    <div>
+                        <input type="button" value="Gebühr" class="sort_asc" id="btn_cost"  />
+                        <input type="button" value="Dauer" class="sort_asc" id="btn_time" />
+                    </div>
+                    <input type="button" value="Zufügen" class="btn_add" onclick="location.href='fee_add.html';" />
+                </div> 
+                <!--prompty dialog-->
+                <div id="operate_result_info" class="operate_success">
+                    <img src="../../images/close.png" onclick="this.parentNode.style.display='none';" />
+                   		<span></span>
+                </div>    
+                <!--Daten-->     
+                <div id="data">            
+                    <table id="datalist">
+                      <thead>
+	                        <tr>
+	                            <th>ID</th>
+	                            <th class="width120">Tarifname</th>
+	                            <th>Dauer</th>
+	                            <th>Gebühr</th>
+	                            <th>Stundensatz</th>
+	                            <th  class="width140">Erstellungszeit</th>
+	                            <th class="width140">Zeit</th>
+	                            <th class="width80">Zustand</th>
+	                            <th class="width250">Operation</th>
+	                        </tr>   
+                        </thead> 
+                        <tbody>             
+                        </tbody>     
+                    </table>
+                    <br/>
+                    <p>Beschreibung der Tätigkeit：<br />
+                    1. Wenn der Tarif erstellt wird, wird der Status angehalten und die Erstellungszeit aufgezeichnet.<br />
+                    2. Im Pause-Zustand, kann geändert werden, kann gelöscht werden.<br />
+                    3. Nach dem Öffnen wird die Öffnungszeit aufgezeichnet und kann nach dem Öffnen nicht geändert, nicht mehr deaktiviert und <br/> nicht gelöscht werden.<br />
+                    4. Wenn das Geschäftskonto den Tarif ändert, wird es am Ende des nächsten Monats ausgelöst,um die zugehörige Tarif-ID zu ändern <br/>(diese Auslöseraktion wird vom Programm ausgeführt).
+                    </p>
+                </div>
+                <!--pages-->
+                <div id="pages">
+        	       <a href="#"><</a>
+                    <a href="#" class="current_page">1</a>
+                    <a href="#">></a>
+                </div>
+            </form>
+        </div>
+        <!--main zum ende-->
+        <div id="footer">
+            <p>[Das Projekt werde nur als übung für Java dienen.]</p>
+            <p>Copyright(C):Autor:Likun Ren </p>
+        </div>
+    </body>
+</html>

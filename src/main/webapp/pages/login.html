@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>likun REN_NetCTOSS</title>
+        <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" /> 
+   		<script type="text/javascript" src="../js/jquery-1.4.3.js"></script>
+   		<script type="text/javascript" src="../js/gl.js"></script>
+   		<script type="text/javascript" src="../js/login.js"></script>
+    </head>
+    <body class="index">
+      <div class="login_box">
+            <table>
+                <tr>
+                    <td class="login_info">UserName：</td>
+                    <td colspan="2"><input name="admin_code" id="admin_code" type="text" class="width150" /></td>
+                    <td class="login_error_info"><span class="error_name required"></span></td>
+                </tr>
+                <tr>
+                    <td class="login_info">Passwort：</td>
+                    <td colspan="2"><input name="pwd" id="pwd" type="password" class="width150" /></td>
+                    <td><span class="error_pwd required"></span></td>
+                </tr>
+                <tr>
+                    <td class="login_info">Captcha：</td>
+                    <td class="width70"><input name="checkCode" id="checkCode" type="text" class="width70" ></td>
+                    <td><a href="javascript:;" id="wechseln"><img src="../user/getCode.do" alt="Captcha" title="wechseln" id="img1" /></a></td>  
+                    <td><span class="error_cpatcha required"></span></td>              
+                </tr> 
+                 <tr>
+                    <td> </td>
+                    <td class="login_button" colspan="2">
+                        <a href="javascript:;" id="login_Btn"><img src="../images/login_btn.png" /></a>
+                    </td>               
+                </tr>
+                <tr>
+                	<td colspan="4" class="error_prompt" ><span class="errorMsg required "></span></td>   
+                </tr>           
+               
+            </table>
+        </div>
+    </body>
+</html>

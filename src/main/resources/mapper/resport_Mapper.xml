@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ <mapper namespace="com.netnoss.www.dao.ReportDao">
+ 	<select id="findReportInfo" resultType="com.netnoss.www.entity.ReportInfo" parameterType="Map">
+ 		SELECT account.login_name,account.real_name,account.idcard_no,account.telephone,month_duration.month_id,SUM(month_duration.sofar_duration) AS duration
+ 		FROM month_duration,service,account
+ 		WHERE month_duration.service_id=service.id 
+ 		AND
+ 		service.account_id=account.id
+ 		GROUP BY account.id,month_duration.month_id 
+ 		LIMIT #{pageNum},#{pageSize}
+ 	</select>
+ 	<select id="findTotalCount" resultType="int">
+ 		SELECT count(a.idcard_no) AS page_count
+ 		FROM 
+ 		(SELECT account.login_name,account.real_name,account.idcard_no,account.telephone,month_duration.month_id,SUM(month_duration.sofar_duration) AS duration
+ 		FROM month_duration,service,account
+ 		WHERE month_duration.service_id=service.id 
+ 		AND
+ 		service.account_id=account.id
+ 		GROUP BY account.id,month_duration.month_id) AS a;
+ 	</select> 
+ </mapper>

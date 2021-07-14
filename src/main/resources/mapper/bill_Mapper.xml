@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ <mapper namespace="com.netnoss.www.dao.BillDao">
+ 	<select id="findBillInfo" parameterType="Map" resultType="com.netnoss.www.entity.BillDeatil">
+ 		SELECT bill.id,account.real_name,account.idcard_no,account.login_name,bill.bill_month,bill.cost,bill.parment_mode,bill.pay_state
+ 		FROM bill INNER JOIN account 
+ 		ON bill.account_id = account.id 
+ 		WHERE bill.bill_month like CONCAT(#{bill_month},'%') 
+ 		<if test="idcard_no!=null and idcard_no != ''">
+ 			AND account.idcard_no=#{idcard_no}
+ 		</if>
+ 		<if test="login_name!= null and login_name !=''">
+ 			AND account.login_name=#{login_name}
+ 		</if>
+ 		<if test="real_name!=null and real_name!=''">
+ 			AND account.real_name=#{real_name}
+ 		</if>
+ 		 ORDER BY bill.id ASC
+		 LIMIT #{pageNum},#{pageSize}
+ 	</select>
+ 	<select id="findBillPageCount" parameterType="Map" resultType="int">
+ 		SELECT count(bill.id) AS page_count
+ 		FROM bill INNER JOIN account 
+ 		ON bill.account_id = account.id 
+ 		WHERE bill.bill_month like CONCAT(#{bill_month},'%') 
+ 		<if test="idcard_no!=null and idcard_no != ''">
+ 			AND account.idcard_no=#{idcard_no}
+ 		</if>
+ 		<if test="login_name!= null and login_name !=''">
+ 			AND account.login_name=#{login_name}
+ 		</if>
+ 		<if test="real_name!=null and real_name!=''">
+ 			AND account.real_name=#{real_name}
+ 		</if>
+ 		 ORDER BY bill.id ASC
+ 	</select>
+ 	<select id="findBillMonth" parameterType="Map" resultType="com.netnoss.www.entity.BillDetailMonth">
+ 		SELECT service.os_username,service.unix_host,service.account_id,month_duration.sofar_duration,bill_item.cost,cost.name
+ 		FROM bill_item,month_duration,service,cost 
+ 		WHERE bill_item.bill_id=#{bill_id} 
+ 		AND month_duration.month_id=#{month_id} 
+ 		AND bill_item.service_id=month_duration.service_id  
+ 		AND service.id=bill_item.service_id 
+ 		AND service.cost_id=cost.id 
+ 		LIMIT #{pageNum},#{pageSize}
+ 	</select>
+ 	<select id="findbillDetailPageCount" parameterType="int" resultType="int">
+ 		SELECT count(bill_item.item_id) AS page_count
+ 		FROM bill_item
+ 		WHERE bill_item.bill_id=#{bill_id}
+ 	</select>
+ </mapper>

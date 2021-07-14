@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ <mapper namespace="com.netnoss.www.dao.ServiceDao">
+ 	<select id="findAllService" parameterType="com.netnoss.www.entity.ServiceCondition" resultType="com.netnoss.www.entity.ServiceDetailInfo">
+ 		SELECT service.id AS id,
+ 		service.account_id AS account_id,
+ 		account.idcard_no AS idcard_no,
+ 		account.real_name AS real_name,
+ 		service.os_username AS login_name,
+ 		service.status AS status,
+ 		service.unix_host AS unix_host,
+ 		cost.name AS name
+ 		FROM service,account,host,cost 
+ 		WHERE account_id=account.id 
+ 		AND unix_host=host.id 
+ 		AND cost_id=cost.id 
+ 		<if test="osUsername!=null and osUsername!=''">
+ 			 AND service.os_username=#{osUsername}
+ 		</if>
+ 		<if test="serviceIp!=null and serviceIp!=''">
+ 			 AND service.unix_host=#{serviceIp}
+ 		</if>
+ 		<if test="ausWeise!=null and ausWeise!=''">
+ 			 AND account.idcard_no=#{ausWeise}
+ 		</if>
+ 		<if test="status!=null and status!=0">
+ 			 AND service.status=#{status}
+ 		</if>
+ 		ORDER BY service.id  DESC
+ 		LIMIT #{pageNum},#{pageSize};
+ 	</select>
+ 	<select id="findServicePageCount" parameterType="com.netnoss.www.entity.ServiceCondition" resultType="int">
+ 		SELECT COUNT(service.id) AS page_count
+ 		FROM service,account,host,cost
+ 		WHERE  account_id=account.id 
+ 		AND unix_host=host.id 
+ 		AND cost_id=cost.id 
+ 		<if test="osUsername!=null and osUsername!=''">
+ 			 AND service.os_username=#{osUsername}
+ 		</if>
+ 		<if test="serviceIp!=null and serviceIp!=''">
+ 			 AND service.unix_host=#{serviceIp}
+ 		</if>
+ 		<if test="ausWeise!=null and ausWeise!=''">
+ 			 AND account.idcard_no=#{ausWeise}
+ 		</if>
+ 		<if test="status!=null and status!=0">
+ 			 AND service.status=#{status}
+ 		</if>
+ 	</select>
+ 	<update id="updateServiceStatus">
+		UPDATE service
+		SET status=#{0},pause_date=#{1}
+		WHERE id=#{2}
+	</update>
+	<update id="modifyCostId">
+		UPDATE service set cost_id=#{0} 
+		WHERE id=#{1}
+	</update>
+	<select id="findServiceByid" parameterType="int" resultType="com.netnoss.www.entity.Service">
+		SELECT id,account_id,unix_host,os_username,login_passwd,status,create_date,pause_date,close_date,cost_id
+		FROM service
+		WHERE id=#{id}
+	</select>
+	<select id="findHostByname" parameterType="Map" resultType="com.netnoss.www.entity.Service">
+		SELECT * 
+		FROM service
+		WHERE unix_host=#{unix_host} AND os_username=#{os_username}
+	</select>
+	<insert id="addNewService" parameterType="com.netnoss.www.entity.Service">
+		INSERT INTO service(account_id,unix_host,os_username,login_passwd,status,create_date,cost_id)
+		VALUES(#{account_id},#{unix_host},#{os_username},#{login_passwd},#{status},#{create_date},#{cost_id})
+	</insert>
+ </mapper>

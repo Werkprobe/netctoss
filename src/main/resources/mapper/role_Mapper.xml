@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.netnoss.www.dao.RoleDao">
+	<select id="findRoleList"  resultMap="role_info">
+		SELECT id,name,GROUP_CONCAT(privilege_id) AS role_besitz
+		FROM  role join role_privilege on id=role_id 
+		GROUP BY id
+		ORDER BY id DESC
+		LIMIT #{0},#{1}
+	</select>
+	<select id="findRoleCount" resultType="int">
+		SELECT COUNT(id) AS page_count
+		FROM (SELECT id,name,GROUP_CONCAT(privilege_id) AS role_besitz
+			  FROM  role join role_privilege on id=role_id 
+		      GROUP BY id) as role_count
+	</select>
+	<insert id="saveRoleInfo" useGeneratedKeys="true" keyProperty="id" parameterType="com.netnoss.www.entity.Role">
+		INSERT INTO role(name)
+		VALUES(#{name}) 
+	</insert>
+	<select id="findRoleByid" parameterType="string" resultType="com.netnoss.www.entity.Role">
+		SELECT id,name
+		FROM role
+		WHERE name=#{name}
+	</select>
+	<insert id="saveRoleGewalt" parameterType="list">
+		INSERT INTO  role_privilege(role_id, privilege_id)
+		VALUES
+		<foreach collection="list" item="rolePrivilege" index="index" separator=",">
+			 (
+			 	#{rolePrivilege.roleId},
+			 	#{rolePrivilege.privilegeId}
+			 )
+		</foreach> 
+	</insert>
+	<select id="findRoleInfoById" parameterType="int" resultMap="role_info">
+		SELECT id,name,GROUP_CONCAT(privilege_id) AS role_besitz
+		FROM  role join role_privilege on id=role_id 
+		WHERE id=#{roleId}
+		GROUP BY id
+	</select>
+	<update id="updateRole" parameterType="com.netnoss.www.entity.Role">
+		UPDATE role
+		SET name=#{name}
+		WHERE id=#{id}
+	</update>
+	<delete id="deleteRoleGewalt" parameterType="int">
+		DELETE FROM role_privilege
+		WHERE role_id=#{role_id}
+	</delete>
+	<delete id="deleteRole" parameterType="int">
+		DELETE FROM role
+		WHERE  id=#{role_id}
+	</delete>
+	<select id="findRolesByRoleId" parameterType="int" resultMap="admin_role" >
+		SELECT admin_id, role_id 
+		FROM admin_role
+		WHERE role_id=#{role_id}
+	</select>
+	<resultMap type="com.netnoss.www.entity.RoleInfo" id="role_info">
+		<result property="roleId" column="id"/>
+		<result property="roleName" column="name"/>
+		<result property="roleBesitz" column="role_besitz"/>
+	</resultMap>
+	<resultMap type="com.netnoss.www.entity.AdminRole" id="admin_role">
+		<result property="adminId" column="admin_id"/>
+		<result property="roleId" column="role_id"/>
+	</resultMap>
+</mapper>
+
+
+
+
+
+
+

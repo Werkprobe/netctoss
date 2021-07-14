@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>NetCTOSS</title>
+        <link type="text/css" rel="stylesheet" media="all" href="../../styles/global.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="../../styles/global_color.css" /> 
+		<script type="text/javascript" src="../../js/jquery-1.4.3.js"></script>
+   		<script type="text/javascript" src="../../js/gl.js"></script>
+   		<script type="text/javascript" src="bill_item.js"></script>   
+</head>
+    <body>
+        <!--Logo-->
+        <div id="header">
+            <img src="../../images/logo.png" alt="logo" class="left"/>
+            <a href="javascript:;">[Exit]</a>            
+        </div>
+        <!--Logo-->
+        <!--Navigate-->
+        <div id="navi">                        
+            <ul id="menu">
+                <li><a href="../index.html" class="index_off"></a></li>
+                <li><a href="../role/role_list.html" class="role_off"></a></li>
+                <li><a href="../admin/admin_list.html" class="admin_off"></a></li>
+                <li><a href="../fee/fee_list.html" class="fee_off"></a></li>
+                <li><a href="../account/account_list.html" class="account_off"></a></li>
+                <li><a href="../service/service_list.html" class="service_off"></a></li>
+                <li><a href="../bill/bill_list.html" class="bill_on"></a></li>
+                <li><a href="../report/report_list.html" class="report_off"></a></li>
+                <li><a href="../user/user_info.html" class="information_off"></a></li>
+                <li><a href="../user/user_modi_pwd.html" class="password_off"></a></li>
+            </ul>            
+        </div>
+        <!--Navigate Ende-->
+        <!--Main-->
+        <div id="main">
+            <form action="" method="">
+                <!-suchen-->
+                <div class="search_add">                        
+                    <div>Konto：<span class="readonly width70" id="login_name"></span></div>                            
+                    <div>Ausweis：<span class="readonly width150" id="idcard_no"></span></div>
+                    <div>Name：<span class="readonly width70" id="real_name"></span></div>
+                    <div>Zeit：<span class="readonly width70" id="bill_month"></span></div>
+                    <div>BeTräge：<span class="readonly width70" id="cost"></span></div>
+                    <input type="button" value="Zurück" class="btn_add" onclick="location.href='bill_list.html';" />
+                </div>  
+                <!--daten show -->     
+                <div id="data">            
+                    <table id="datalist">
+                    	<thead>
+	                        <tr>
+	                            <th class="width70">ID</th>
+	                            <th class="width150">OS_Name</th>
+	                            <th class="width150">IP</th>
+	                            <th class="width70">Konto</th>
+	                            <th class="width150">Minuten</th>
+	                             <th class="width70">Gebühr</th>
+	                            <th class="width150">Tarifname</th>                    
+	                        </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <!--pages-->
+                <div id="pages">
+        	       <a href="#"><</a>
+                    <a href="#" class="current_page">1</a>
+                    <a href="#">></a>
+                </div>                    
+            </form>
+        </div>
+        <!--main zum ende-->
+        <div id="footer">
+            <p>[Das Projekt werde nur als übung für Java dienen.]</p>
+			<p>Copyright(C):Autor:Likun Ren</p>
+        </div>
+    </body>
+</html>

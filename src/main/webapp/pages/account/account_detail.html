@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>NetCTOSS</title>
+        <link type="text/css" rel="stylesheet" media="all" href="../../styles/global.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="../../styles/global_color.css" />
+    </head>
+    <body>
+        <!--Logo-->
+        <div id="header">
+            <img src="../../images/logo.png" alt="logo" class="left" />
+            <a href="#">[Exit]</a>            
+        </div>
+      <!--Logo zum Ende-->
+	  <!--Navigetion-->
+        <div id="navi">
+            <ul id="menu">
+                <li><a href="../index.html" class="index_off"></a></li>
+                <li><a href="../role/role_list.html" class="role_off"></a></li>
+                <li><a href="../admin/admin_list.html" class="admin_off"></a></li>
+                <li><a href="../fee/fee_list.html" class="fee_off"></a></li>
+                <li><a href="../account/account_list.html" class="account_on"></a></li>
+                <li><a href="../service/service_list.html" class="service_off"></a></li>
+                <li><a href="../bill/bill_list.html" class="bill_off"></a></li>
+                <li><a href="../report/report_list.html" class="report_off"></a></li>
+                <li><a href="../user/user_info.html" class="information_off"></a></li>
+                <li><a href="../user/user_modi_pwd.html" class="password_off"></a></li>
+            </ul>
+        </div>
+        <!--zu Ende-->
+	    <!--main-->
+        <div id="main" style="max-height: 408px;">            
+            <form action="" method="" class="main_form">
+                <div class="text_info clearfix"><span>Name：</span></div>
+                <div class="input_info"><input type="text" value="" readonly class="readonly" /></div>
+                <div class="text_info clearfix"><span>Ausweisnummer：</span></div>
+                <div class="input_info">
+                    <input type="text" value="230198765432123456" readonly class="readonly" />
+                </div>
+                <div class="text_info clearfix"><span>Kontonumber：</span></div>
+                <div class="input_info">
+                    <input type="text" value="user1" readonly class="readonly" />
+                </div>                   
+                <div class="text_info clearfix"><span>Telefon：</span></div>
+                <div class="input_info">
+                    <input type="text" class="readonly" readonly value="13426484515" />
+                </div>
+                <div class="text_info clearfix"><span>Zustand：</span></div>
+                <div class="input_info">
+                   <select class="select_search" disabled="disabled">
+                            <option>start</option>
+                            <option>abbrechen</option>
+                            <option>löschen</option>
+                        </select>                      
+                </div>                    
+                <div class="text_info clearfix"><span>start/abbrechen/löschen Zeit：</span></div>
+                <div class="input_info"><input type="text" readonly class="readonly" value="2013/01/21 12:00:00" /></div>
+
+                <div class="text_info clearfix"><span>Letzte Zeit：</span></div>
+                <div class="input_info"><input type="text" readonly class="readonly" value="2013/02/21 12:00:00" /></div>
+                <div class="text_info clearfix"><span>Letzte IP：</span></div>
+                <div class="input_info"><input type="text" readonly class="readonly" value="192.168.0.100" /></div>
+                <div class="text_info clearfix"><span>Geschlecht：</span></div>
+                <div class="input_info fee_type">
+                    <input type="radio" name="radSex" checked="checked" id="female" disabled />
+                    <label for="female">weiblich</label>
+                    <input type="radio" name="radSex" id="male" disabled />
+                    <label for="male">männlich</label>
+                </div> 
+                <div class="text_info clearfix"><span>Adress：</span></div>
+                <div class="input_info"><input type="text" class="width350 readonly" readonly value="" /></div> 
+                <div class="text_info clearfix"><span>PLZ：</span></div>
+                <div class="input_info"><input type="text" class="readonly" readonly value="100098" /></div>            
+                <!--Operation-->
+                <div class="button_info clearfix">
+                    <input type="button" value="Abbrechen" class="btn_save" onclick="location.href='account_list.html';" />
+                </div>
+            </form>  
+        </div>
+        <!--main zum Ende-->
+        <div id="footer">
+            <p>[Das Projekt werde nur als übung für Java dienen.]</p>
+            <p>Copyright(C):Autor:Likun Ren </p>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.netnoss.www.dao.CostDao">
+ 	<select id="findCostList" parameterType="com.netnoss.www.entity.ParamValue" resultType="com.netnoss.www.entity.Cost">
+		SELECT id,name,base_duration,base_cost,unit_cost,status,descr,creatime,startime,costtype
+		FROM Cost
+		<if test="orderField !=null and orderField != ''">
+			ORDER BY ${orderField} ${orderType}
+		</if>
+		LIMIT #{pageNum},#{pageCount}
+ 	</select>
+ 	<select id="findCostCount" resultType="int">
+ 		SELECT COUNT(id) AS page_count
+ 		FROM cost
+ 	</select>
+ 	<select id="findAllCost" resultType="com.netnoss.www.entity.Cost">
+ 		SELECT id,name
+ 		FROM cost
+ 	</select>
+ 	<update id="updateCostStatus">
+ 		UPDATE cost
+ 		SET status=#{0},startime=#{2}
+ 		WHERE id=#{1}
+ 	</update>
+ 	<delete id="delCostById" parameterType="int">
+ 		DELETE FROM cost
+ 		WHERE id=#{id}
+ 	</delete>
+ 	<select id="getCostbyId" parameterType="int" resultType="com.netnoss.www.entity.Cost">
+ 		SELECT id,name,base_duration,base_cost,unit_cost,status,descr,creatime,startime,costtype
+ 		FROM cost
+ 		WHERE id=#{id}
+ 	</select>
+ 	<update id="modifyConstById" parameterType="com.netnoss.www.entity.Cost">
+ 		UPDATE cost 
+ 		SET name=#{name},base_duration=#{base_duration},base_cost=#{base_cost},unit_cost=#{unit_cost},descr=#{descr},costtype=#{costtype}
+ 		WHERE id=#{id}
+ 	</update>
+ 	<insert id="saveTarifInfo" parameterType="com.netnoss.www.entity.Cost">
+ 		INSERT INTO cost(name,base_duration,base_cost,unit_cost,status,descr,creatime,costtype)
+ 		VALUES(#{name},#{base_duration},#{base_cost},#{unit_cost},#{status},#{descr},#{creatime},#{costtype})
+ 	</insert>
+</mapper>
